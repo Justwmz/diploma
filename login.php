@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL ^ E_NOTICE);
 if (isset($_POST['email'])) {
     $passwordHash = hash('sha256', $_POST['password']);
     $email = $_POST['email']; 

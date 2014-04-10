@@ -11,9 +11,8 @@ $db = new SafeMySQL();
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
-    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="css/jquery.jqplot.min.css" rel="stylesheet">
     </head>
       <body>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
