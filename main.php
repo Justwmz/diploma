@@ -5,12 +5,11 @@ $db = new SafeMySQL();
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sign In Please</title>
+    <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/signin.css" rel="stylesheet">
     <script src="js/jquery-1.9.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/jquery.jqplot.min.css" rel="stylesheet">
@@ -29,15 +28,7 @@ $db = new SafeMySQL();
         </div>
        <div class="container" style="padding-top: 70px">
           <div class="row">
-            <form class="form-signin" role="form" action="login.php" method="POST">
-              <h2 class="form-signin-heading">Please sign in</h2>
-              <input type="text" class="form-control" placeholder="Email address" required autofocus name="email">
-              <input type="password" class="form-control" placeholder="Password" required name="password">
-              <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-              </label>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
+
           </div>
       </body>
 </html>
