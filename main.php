@@ -59,50 +59,56 @@ $user_id = $_SESSION['id'];
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
+              <form action="new_incident.php" method="POST">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   <h4 class="modal-title" id="myModalLabel">Запит на інцидент</h4>
                 </div>
                 <div class="modal-body">
                 <label>Оберіть послугу</label>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                <?php
+                $service = $db->getAll("SELECT * FROM service");
+                  echo("<select class='form-control' name='service'>");
+                    for($i=0;$i<count($service);$i++){
+                    echo("<option value='".$service[$i]['id']."'>".$service[$i]['name']."</option>");
+                    }
+                  echo("</select>");
+                ?>
                 <label>Тип запиту</label>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                <?php
+                $request = $db->getAll("SELECT * FROM request");
+                  echo("<select class='form-control' name='request'>");
+                    for($i=0;$i<count($request);$i++){
+                    echo("<option value='".$request[$i]['id']."'>".$request[$i]['name']."</option>");
+                    }
+                  echo("</select>");
+                ?>
                 <label>Опис проблеми</label>
-                <textarea class="form-control" rows="6"></textarea>
+                <textarea class="form-control" name="description" rows="6"></textarea>
                 <label>Вплив</label>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                <?php
+                $influence = $db->getAll("SELECT * FROM influence");
+                  echo("<select class='form-control' name='influence'>");
+                    for($i=0;$i<count($influence);$i++){
+                    echo("<option value='".$influence[$i]['id']."'>".$influence[$i]['name']."</option>");
+                    }
+                  echo("</select>");
+                ?>
                 <label>Категорії запиту</label>
-                  <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                <?php
+                $class = $db->getAll("SELECT * FROM class");
+                  echo("<select multiple class='form-control' name='class[]'>");
+                    for($i=0;$i<count($class);$i++){
+                    echo("<option value='".$class[$i]['id']."'>".$class[$i]['name']."</option>");
+                    }
+                  echo("</select>");
+                ?>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                  <button type="button" class="btn btn-primary">Відправити</button>
+                  <button type="submit" class="btn btn-primary">Відправити</button>
                 </div>
+              </form>
               </div>
             </div>
           </div>
