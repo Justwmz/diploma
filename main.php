@@ -55,6 +55,13 @@ $user_id = $_SESSION['id'];
             <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Добавити запит на інцидент</button>
             </div>
           </div>
+          <br>
+          <?php
+          if($_SESSION['access'] == 5)
+          {
+          include 'access_adm.php';
+      	  }
+          ?>
           <!-- Modal -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

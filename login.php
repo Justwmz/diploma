@@ -19,6 +19,7 @@ $db = new SafeMySQL();
         // Стартуем сессию и записываем логин в суперглобальный массив $_SESSION
         $_SESSION['user'] = $email;
         $_SESSION['id'] = $res['id'];
+        $_SESSION['access'] = $res['access'];
 
 
             // Если определена страница с которой мы пришли,
