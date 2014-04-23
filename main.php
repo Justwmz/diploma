@@ -14,13 +14,19 @@ $user_id = $_SESSION['id'];
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Main Page</title>
+    <title>Головна Сторінка</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+    tinymce.init({
+        selector: "textarea"
+     });
+    </script>
     </head>
       <body>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -44,7 +50,10 @@ $user_id = $_SESSION['id'];
               <a class="navbar-brand" href="#">Service Desk</a>
             </div>
             <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">      
+              <ul class="nav navbar-nav">
+              <?php
+              include 'nav_menu.php';
+              ?>       
               </ul>
             </div><!--/.navbar-collapse -->
           </div>
@@ -57,9 +66,15 @@ $user_id = $_SESSION['id'];
           </div>
           <br>
           <?php
+          //Если уровень доступа совпадает выводим соответствующий контент
           if($_SESSION['access'] == 5)
           {
           include 'access_adm.php';
+      	  }
+
+      	  if($_SESSION['access'] == 1)
+      	  {
+      	  include 'access_users.php';
       	  }
           ?>
           <!-- Modal -->

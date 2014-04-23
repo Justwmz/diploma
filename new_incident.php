@@ -44,7 +44,10 @@ $user_id = $_SESSION['id'];
               <a class="navbar-brand" href="#">Service Desk</a>
             </div>
             <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">      
+              <ul class="nav navbar-nav">
+              <?php
+              include 'nav_menu.php';
+              ?>      
               </ul>
             </div><!--/.navbar-collapse -->
           </div>
@@ -54,7 +57,7 @@ $user_id = $_SESSION['id'];
             <div class="col-md-6">
               <?php
               foreach ($_POST['class'] as $value) {
-                $db->query("INSERT INTO incidents VALUES (NULL, '".$_POST['service']."', '".$_POST['request']."', '".$_POST['description']."', '".$_POST['influence']."', '$value', '$user_id')");
+                $db->query("INSERT INTO incidents VALUES (NULL, '".$_POST['service']."', '".$_POST['request']."', '".$_POST['description']."', '".$_POST['influence']."', '$value', '$user_id', CURDATE(), 0)");
               }
               ?>
               <div class="alert alert-success">Запит було відправлено на опрацювання!</div>

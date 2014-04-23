@@ -5,7 +5,7 @@ $db = new SafeMySQL();
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sign In Please</title>
+    <title>Авторизація</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <!-- Bootstrap -->
@@ -29,13 +29,13 @@ $db = new SafeMySQL();
        <div class="container" style="padding-top: 70px">
           <div class="row">
             <form class="form-signin" role="form" action="login.php" method="POST">
-              <h2 class="form-signin-heading">Please sign in</h2>
-              <input type="text" class="form-control" placeholder="Email address" required autofocus name="email">
-              <input type="password" class="form-control" placeholder="Password" required name="password">
+              <h2 class="form-signin-heading">Авторизуйтесь</h2>
+              <input type="text" class="form-control" placeholder="Логін" required autofocus name="email">
+              <input type="password" class="form-control" placeholder="Пароль" required name="password">
               <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"> Запам'ятати мене
               </label>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
             </form>
           </div>
       </body>
