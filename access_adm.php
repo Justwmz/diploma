@@ -20,7 +20,8 @@
 							$des_service = $db->getOne("SELECT name FROM service WHERE id = ".$incidents[$i]['service']."");
 							echo("<td>".$des_service."</td>");
 							echo("<td></td>");
-							echo("<td>".$incidents[$i]['description']."</td>");
+							$desc = $incidents[$i]['description'];
+							echo("<td>".substr(strip_tags($desc), 0, strpos(strip_tags($desc), ' ', 10))."...</td>");
 							$des_influence = $db->getOne("SELECT name FROM influence WHERE id = ".$incidents[$i]['influence']."");
 							echo("<td>".$des_influence."</td>");
 							$des_class = $db->getOne("SELECT name FROM class WHERE id = ".$incidents[$i]['class']."");
@@ -43,9 +44,9 @@
 							echo("</form>");
 							echo("</td>");*/
 							echo("<td>
-								<button class='btn btn-info btn-xs' data-toggle='modal' data-target='#View'><span class='glyphicon glyphicon-search'></span></button>
+								<button class='btn btn-info btn-xs' data-toggle='modal' data-target='#View".$incidents[$i]['id']."'><span class='glyphicon glyphicon-search'></span></button>
 								<button class='btn btn-warning btn-xs' data-toggle='modal' data-target='#Edit'><span class='glyphicon glyphicon-edit'></span></button>
-								<button class='btn btn-danger btn-xs' data-toggle='modal' data-target='#Delete'><span class='glyphicon glyphicon-remove'></span></button>
+								<button class='btn btn-danger btn-xs' data-toggle='modal' data-target='#Delete".$incidents[$i]['id']."'><span class='glyphicon glyphicon-remove'></span></button>
 									  </td>");
 						echo("</tr>");
 					}
@@ -57,23 +58,39 @@
 
 
 <!-- Modal View -->
-<div class="modal fade" id="View" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?php/*
+$incidents = $db->getAll("SELECT * FROM incidents");
+	for($i=0;$i<count($incidents);$i++){
+echo("<div class='modal fade' id='View".$incidents[$i]['id']."' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>");
+  echo("<div class='modal-dialog'>");
+    echo("<div class='modal-content'>");
+      echo("<div class='modal-header'>");
+        echo("<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>");
+        echo("<h4 class='modal-title' id='myModalLabel'>Перегляд</h4>");
+      echo("</div>");
+      echo("<div class='modal-body'>");
+		echo("<table class='table table-bordered'>");
+							echo("<tr>");
+							echo("<th>№</th>");
+							echo("<th>Послуга</th>");
+							echo("<th>Статус</th>");
+							echo("<th>Опис проблеми</th>");
+							echo("<th>Вплив</th>");
+							echo("<th>Категорія запиту</th>");
+							echo("<th>Від кого</th>");
+							echo("<th>Коли</th>");
+							echo("</tr>");
+		echo("</table>");
+      echo("</div>");
+      echo("<div class='modal-footer'>");
+        echo("<button type='button' class='btn btn-default' data-dismiss='modal'>Закрити</button>");
+		//echo("<a class='btn btn-danger' href='remove.php?id=".$incidents[$i]['id']."'>Так</a>");
+      echo("</div>");
+    echo("</div>");
+  echo("</div>");
+echo("</div>");
+}*/
+?>
 
 <!-- Modal Edit -->
 <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -95,26 +112,25 @@
 </div>
 
 <!-- Modal Delete -->
-<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Видалення</h4>
-      </div>
-      <div class="modal-body">
-       Ви впевнені в цьому?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-        <?php
-        $incidents = $db->getAll("SELECT * FROM incidents");
-					for($i=0;$i<count($incidents);$i++){
-						echo("<a class='btn btn-danger' href='remove.php?id=".$incidents[$i]['id']."'>Так</a>");
-					}
-        ?>
-        <button type="button" class="btn btn-danger">Так</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+$incidents = $db->getAll("SELECT * FROM incidents");
+	for($i=0;$i<count($incidents);$i++){
+echo("<div class='modal fade' id='Delete".$incidents[$i]['id']."' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>");
+  echo("<div class='modal-dialog'>");
+    echo("<div class='modal-content'>");
+      echo("<div class='modal-header'>");
+        echo("<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>");
+        echo("<h4 class='modal-title' id='myModalLabel'>Видалення</h4>");
+      echo("</div>");
+      echo("<div class='modal-body'>");
+      echo("Ви впевнені в цьому?");
+      echo("</div>");
+      echo("<div class='modal-footer'>");
+        echo("<button type='button' class='btn btn-default' data-dismiss='modal'>Закрити</button>");
+		echo("<a class='btn btn-danger' href='remove.php?id=".$incidents[$i]['id']."'>Так</a>");
+      echo("</div>");
+    echo("</div>");
+  echo("</div>");
+echo("</div>");
+}
+?>
