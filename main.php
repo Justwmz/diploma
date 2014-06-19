@@ -52,7 +52,7 @@ $user_id = $_SESSION['id'];
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
               <?php
-              //include 'nav_menu.php';
+              include 'nav_menu.php';
               ?>       
               </ul>
             </div><!--/.navbar-collapse -->

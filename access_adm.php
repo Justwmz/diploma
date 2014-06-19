@@ -21,7 +21,20 @@
 							echo("<td>".$incidents[$i]['id']."</td>");
 							$des_service = $db->getOne("SELECT name FROM service WHERE id = ".$incidents[$i]['service']."");
 							echo("<td>".$des_service."</td>");
-							echo("<td></td>");
+							$status = $db->getAll("SELECT * FROM status");
+							echo("<td>");
+							echo("<form action='status_upd.php' method='POST'>");
+							echo("<input type='hidden' value='".$incidents[$i]['id']."' name='id'>");
+								echo("<select class='form-control' name='status'>");
+								for($y=0;$y<count($status);$y++)
+									{
+									echo("<option value='".$status[$y]['id']."'>".$status[$y]['name']."</option>");		
+									}
+								echo("</select>");
+								echo("<button type='sumbmit' class='btn btn-primary btn-sm' style='margin: 5px'>Назначити</button>");
+							echo("</form>");
+							echo("</td>");
+
 							$desc = $incidents[$i]['description'];
 							echo("<td>".substr(strip_tags($desc), 0, strpos(strip_tags($desc), ' ', 10))."...</td>");
 							$des_influence = $db->getOne("SELECT name FROM influence WHERE id = ".$incidents[$i]['influence']."");
@@ -41,7 +54,7 @@
 										echo("<option value='".$responsible[$y]['id']."'>".$responsible[$y]['first']." ".$responsible[$y]['last']."</option>");		
 									}
 								echo("</select>");
-								echo("<button type='sumbmit' class='btn btn-danger btn-sm' style='margin: 5px'>Назначити</button>");
+								echo("<button type='sumbmit' class='btn btn-primary btn-sm' style='margin: 5px'>Назначити</button>");
 							echo("</form>");
 							echo("</td>");
 							echo("<td>
