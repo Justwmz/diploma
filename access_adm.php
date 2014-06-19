@@ -10,10 +10,12 @@
 					<th>Категорія запиту</th>
 					<th>Від кого</th>
 					<th>Коли</th>
+					<th>Відповідальний</th>
 					<th>Видалити</th>
 					</tr>
 					<?php
 					$incidents = $db->getAll("SELECT * FROM incidents");
+					$users = $db->getOne("SELECT id FROM users");
 					for($i=0;$i<count($incidents);$i++){
 						echo("<tr>");
 							echo("<td>".$incidents[$i]['id']."</td>");
@@ -30,21 +32,19 @@
 							echo("<td>".$des_from_user['first']." ".$des_from_user['last']."</td>");
 							echo("<td>".$incidents[$i]['date']."</td>");
 							$responsible = $db->getAll("SELECT * FROM users WHERE access = 5");
-							// 22
-							/*echo("<td>");
+							echo("<td>");
 							echo("<form action='responsible_upd.php' method='POST'>");
 							echo("<input type='hidden' value='".$incidents[$i]['id']."' name='id'>");
 								echo("<select class='form-control' name='responsible'>");
 									for($y=0;$y<count($responsible);$y++)
 									{
-										echo("<option value='".$responsible[$y]['id']."'>".$responsible[$y]['first']." ".$responsible[$y]['last']."</option>");	
+										echo("<option value='".$responsible[$y]['id']."'>".$responsible[$y]['first']." ".$responsible[$y]['last']."</option>");		
 									}
 								echo("</select>");
 								echo("<button type='sumbmit' class='btn btn-danger btn-sm' style='margin: 5px'>Назначити</button>");
 							echo("</form>");
-							echo("</td>");*/
+							echo("</td>");
 							echo("<td>
-								<button class='btn btn-info btn-xs' data-toggle='modal' data-target='#View".$incidents[$i]['id']."'><span class='glyphicon glyphicon-search'></span></button>
 								<button class='btn btn-warning btn-xs' data-toggle='modal' data-target='#Edit'><span class='glyphicon glyphicon-edit'></span></button>
 								<button class='btn btn-danger btn-xs' data-toggle='modal' data-target='#Delete".$incidents[$i]['id']."'><span class='glyphicon glyphicon-remove'></span></button>
 									  </td>");
@@ -55,57 +55,20 @@
 				</table>          		
 			</div>      	
 		  </div>
-
-
-<!-- Modal View -->
-<?php/*
-$incidents = $db->getAll("SELECT * FROM incidents");
-	for($i=0;$i<count($incidents);$i++){
-echo("<div class='modal fade' id='View".$incidents[$i]['id']."' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>");
-  echo("<div class='modal-dialog'>");
-    echo("<div class='modal-content'>");
-      echo("<div class='modal-header'>");
-        echo("<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>");
-        echo("<h4 class='modal-title' id='myModalLabel'>Перегляд</h4>");
-      echo("</div>");
-      echo("<div class='modal-body'>");
-		echo("<table class='table table-bordered'>");
-							echo("<tr>");
-							echo("<th>№</th>");
-							echo("<th>Послуга</th>");
-							echo("<th>Статус</th>");
-							echo("<th>Опис проблеми</th>");
-							echo("<th>Вплив</th>");
-							echo("<th>Категорія запиту</th>");
-							echo("<th>Від кого</th>");
-							echo("<th>Коли</th>");
-							echo("</tr>");
-		echo("</table>");
-      echo("</div>");
-      echo("<div class='modal-footer'>");
-        echo("<button type='button' class='btn btn-default' data-dismiss='modal'>Закрити</button>");
-		//echo("<a class='btn btn-danger' href='remove.php?id=".$incidents[$i]['id']."'>Так</a>");
-      echo("</div>");
-    echo("</div>");
-  echo("</div>");
-echo("</div>");
-}*/
-?>
-
 <!-- Modal Edit -->
 <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Редагування</h4>
       </div>
       <div class="modal-body">
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+        <button type="button" class="btn btn-primary">Відправити</button>
       </div>
     </div>
   </div>
